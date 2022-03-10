@@ -1,13 +1,13 @@
 from setuptools import setup
 
 setup(
-    name="nbss-upload",
+    name="nb-upload",
     version="0.1",
-    url="https://github.com/notebook-sharing-space/nbss-upload",
+    url="https://github.com//nbss-upload",
     description="Upload notebooks to a notebooksharing.space instance",
     license="3-clause BSD",
-    author="Yuvi Panda",
-    author_email="yuvipanda@gmail.com",
+    author="jgart",
+    author_email="jgart@dismail.de",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     py_modules=["nbss_upload"],
