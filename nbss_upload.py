@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Upload given notebook to an nbss instance
+Upload given notebook to a cl-nb instance
 """
 import argparse
 import sys
 from pathlib import Path
 import requests
 
-def upload_notebook(notebook: Path, enable_annotations: bool, enable_discovery: bool, nbss_url: str):
+def upload_notebook(notebook: Path, enable_discovery: bool, nbss_url: str):
     """
     Upload a notebook file to an nbss instance with
     """
@@ -16,7 +16,6 @@ def upload_notebook(notebook: Path, enable_annotations: bool, enable_discovery: 
         return requests.post(
             upload_url,
             data={
-                'enable-annotations': enable_annotations,
                 'enable-discovery': enable_discovery
             },
             files={
@@ -35,14 +34,9 @@ def main():
         type=Path
     )
     argparser.add_argument(
-        '--nbss-url',
-        default='https://notebooksharing.space',
+        '--nb-url',
+        default='https://notebook.genenetwork.org',
         help='URL of NotebookSharingSpace instance to upload the notebook to'
-    )
-    argparser.add_argument(
-        '--enable-annotations', '-a',
-        action='store_true',
-        help='Enable annotations on the notebook with hypothes.is'
     )
     argparser.add_argument(
         '--enable-discovery', '-d',
@@ -56,7 +50,7 @@ def main():
         print(f'File {args.notebook} does not exist, can not upload', file=sys.stderr)
         sys.exit(1)
 
-    print(upload_notebook(args.notebook, args.enable_annotations, args.enable_discovery, args.nbss_url))
+    print(upload_notebook(args.notebook, args.enable_discovery, args.nbss_url))
 
 if __name__ == '__main__':
     main()
